@@ -1,6 +1,7 @@
 #define pinLed 6
 bool IsLedOn;
 unsigned long LastToggleTime;
+int BlinkInterval;
 
 void setup() {
   Serial.begin(9600);
@@ -9,12 +10,13 @@ void setup() {
   pinMode(pinLed,OUTPUT);
   LedOff();
   LastToggleTime=millis();
+  BlinkInterval=random(200,3001);
 }
 
 void loop() {
-  int BlinkInterval=random(1000,3001);
 
   if(millis()-LastToggleTime > BlinkInterval){
+    BlinkInterval=random(200,3001);
     LedToggle();
     LastToggleTime=millis();
   }
