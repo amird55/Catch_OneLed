@@ -1,6 +1,8 @@
 #define pinLed 6
 #define pinBtn 2
 
+#define pinLedYellow 4
+
 bool IsLedOn;
 unsigned long LastToggleTime;
 int BlinkInterval;
@@ -21,6 +23,10 @@ void setup() {
   LedOff();
   LastToggleTime=millis();
   BlinkInterval=random(200,3001);
+
+  pinMode(pinLedYellow,OUTPUT);
+  analogWrite(pinLedYellow,287);
+
 }
 
 void loop() {
