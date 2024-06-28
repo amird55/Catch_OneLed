@@ -37,7 +37,7 @@ void loop() {
     LastToggleTime=millis();
   }
 
-  CurrBtn=digitalRead(BTN_pin);
+  CurrBtn=digitalRead(pinBtn);
   if((CurrBtn == LOW) && (LastBtn == HIGH)&&(millis() - LastPressTime > 50)){
     LastPressTime=millis();
     // btn is pressed
