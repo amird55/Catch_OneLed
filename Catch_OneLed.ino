@@ -25,7 +25,6 @@ void setup() {
   BlinkInterval=random(200,3001);
 
   pinMode(pinLedYellow,OUTPUT);
-  analogWrite(pinLedYellow,287);
 
 }
 
@@ -42,9 +41,14 @@ void loop() {
     LastPressTime=millis();
     // btn is pressed
     score += (IsLedOn) ? 1 : -1 ;
+    score = max(0,score);
+    score = min(5,score);
   }
   LastBtn=CurrBtn;
 
+
+  int ledValY = map(score,0,5,0,128);
+  analogWrite(pinLedYellow,ledValY);
 }
 
 void LedToggle(){
