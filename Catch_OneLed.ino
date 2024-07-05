@@ -2,6 +2,7 @@
 #define pinBtn 2
 
 #define pinLedYellow 4
+#define pinBuzzer 5
 
 #define WAIT_FOR_NEW_GAME 31
 #define START_OF_GAME     32
@@ -29,6 +30,7 @@ void setup() {
 
   pinMode(pinLed,OUTPUT);
   pinMode(pinLedYellow,OUTPUT);
+  pinMode(pinBuzzer,OUTPUT);
 
   CurrState=WAIT_FOR_NEW_GAME;
 
@@ -65,6 +67,7 @@ void start_game(){
   BlinkInterval=random(200,3001);
   MaxBlinks=map(analogRead(A0),0,1023,7,12);
 
+  beep();
   CurrState=GAME_IS_ON;
 }
 void game_on(){
@@ -100,6 +103,12 @@ void game_over(){
      int ledValY = map(score,0,5,0,128);
     analogWrite(pinLedYellow,ledValY);
     CurrState=WAIT_FOR_NEW_GAME;
+}
+
+void beep(){
+  digitalWrite(pinBuzzer,HIGH);
+  delay(400);
+  digitalWrite(pinBuzzer,LOW);
 }
 void LedToggle(){
   if(IsLedOn){
