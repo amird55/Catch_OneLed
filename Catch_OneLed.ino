@@ -49,6 +49,7 @@ void loop() {
 void wait_to_start(){
   digitalWrite(pinLed,HIGH);
   digitalWrite(pinLedYellow,HIGH);
+  /*
   //זיהוי שחרור של הכפתור
     CurrBtn=digitalRead(pinBtn);
     if((CurrBtn == HIGH) && (LastBtn == LOW)&&(millis() - LastPressTime > 50)){
@@ -57,7 +58,12 @@ void wait_to_start(){
       CurrState=START_OF_GAME;
     }
     LastBtn=CurrBtn;
+*/
 
+  //עבודה עם חיישן קול
+  if(analogRead(A3) > 100){
+      CurrState=START_OF_GAME;
+  }
 }
 void start_game(){
   score=0;
